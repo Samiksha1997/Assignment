@@ -6,9 +6,9 @@ import java.time.LocalDate;
 
 import org.testng.Assert;
 
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import io.restassured.RestAssured;
 import io.restassured.http.Method;
 import io.restassured.path.json.JsonPath;
@@ -43,13 +43,14 @@ public class futureExchangeRate {
     	LocalDate today=LocalDate.now();
     	System.out.println("Todays date : "+today);
     	
-    	DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
-    	String strDate = dateFormat.format(today);
+    	//DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+    	//String strDate = dateFormat.format(today);
+    	String strDate=today.toString();
 
     	
     	JsonPath j=new JsonPath(response.asString());
     	String s=j.get("date");
     	
-    	Assert.assertEquals(s, strDate);
+    	Assert.assertNotSame(s, strDate);
     }
 }
